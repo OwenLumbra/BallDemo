@@ -3,6 +3,7 @@
 import pygame, sys, math, random
 from Ball import *
 from playerBall import *
+from HUD import *
 pygame.init()
 if not pygame.font: print('Warning, fonts disabled')
 
@@ -16,6 +17,11 @@ screen = pygame.display.set_mode([900, 700])
 counter = 0;
 player = PlayerBall(4, [900/2, 700/2])
 balls = [player]
+score = HUD("Score: ", [0,0])
+timer = HUD("Time: ", [900-200,0])
+
+kills = 0
+time = 0
 
 while True:
     for event in pygame.event.get():
@@ -40,6 +46,7 @@ while True:
             elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                 player.goKey("sdown")
 
+    time += 1
     counter += 1
     if counter >= 10:
         counter = 0;
@@ -52,18 +59,24 @@ while True:
 
     for ball in balls:
         ball.update(size)
+        
+    timer.update(time/60)
+    score.update(kills)
     
     for hittingBall in balls:
         for hitBall in balls:
             if hittingBall.ballCollide(hitBall):
                 if hittingBall.kind == "player":
                     balls.remove(hitBall)
+                    kills += 1
     
     
     screen.fill((241, 246, 114))
     for ball in balls:
         screen.blit(ball.image, ball.rect)
         screen.blit(player.image, player.rect)
+    screen.blit(score.image, score.rect)
+    screen.blit(timer.image, timer.rect)
     pygame.display.flip()
     clock.tick(60)
     print(clock.get_fps())
