@@ -2,6 +2,7 @@
 
 import pygame, sys, math, random
 from Ball import *
+from Wall import *
 from playerBall import *
 from HUD import *
 pygame.init()
@@ -19,6 +20,9 @@ player = PlayerBall(4, [900/2, 700/2])
 balls = [player]
 score = HUD("Score: ", [0,0])
 timer = HUD("Time: ", [900-200,0])
+
+walls = [Wall([25,25]),
+         Wall([75,25])]
 
 kills = 0
 time = 0
@@ -74,6 +78,8 @@ while True:
     screen.fill((241, 246, 114))
     for ball in balls:
         screen.blit(ball.image, ball.rect)
+    for wall in walls:
+        screen.blit(wall.image, wall.rect)
         screen.blit(player.image, player.rect)
     screen.blit(score.image, score.rect)
     screen.blit(timer.image, timer.rect)
