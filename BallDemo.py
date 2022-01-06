@@ -71,7 +71,8 @@ while True:
                 if hittingBall.kind == "player":
                     balls.remove(hitBall)
                     kills += 1
-    
+        for wall in walls:
+            hittingball.ballCollide(wall)
     
     screen.fill((241, 246, 114))
     for ball in balls:

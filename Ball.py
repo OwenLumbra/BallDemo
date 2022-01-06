@@ -5,6 +5,11 @@ class Ball():
         self.images = [pygame.image.load("images/ball/ball.png"),
                       pygame.image.load("images/ball/ball2.png"),
                       pygame.image.load("images/ball/ball3.png"),
+                      pygame.image.load("images/ball/ball4.png"),
+                      pygame.image.load("images/ball/ball5.png"),
+                      pygame.image.load("images/ball/ball6.png"),
+                      pygame.image.load("images/ball/ball5.png"),
+                      pygame.image.load("images/ball/ball4.png"),
                       pygame.image.load("images/ball/ball3.png"),
                       pygame.image.load("images/ball/ball2.png")]
         self.frame = 0
